@@ -55,17 +55,6 @@ func setupStatic(r *gin.Engine) {
 		"/images",
 		OutputDir,
 	)
-
-	// 前端页面
-	r.StaticFile(
-		"/",
-		"./index.html",
-	)
-
-	r.StaticFile(
-		"/app.js",
-		"./app.js",
-	)
 }
 
 // API

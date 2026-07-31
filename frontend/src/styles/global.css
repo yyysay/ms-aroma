@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+
+
+/*
+    标题字体
+*/
+
+.font-serif-title {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+
+
+
+/*
+    商品进入动画
+*/
+
+@keyframes fadeInUp {
+
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(16px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+
+
+.animate-fade-in-up {
+
+    animation:
+        fadeInUp
+        .6s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+
+}
+
+
+
+
+
+/*
+    全局图片优化
+*/
+
+img {
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+}
+
+
+
+
+
+/*
+    平滑滚动
+*/
+
+html {
+
+    scroll-behavior:
+        smooth;
+
+}
+
+
+
+
+
+/*
+    选中文字颜色
+*/
+
+::selection {
+
+    background:
+        #d6d0c4;
+
+    color:
+        #292524;
+
+}
+
+
+
+
+
+/*
+    滚动条优化
+*/
+
+::-webkit-scrollbar {
+
+    width:
+        8px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:
+        #faf8f5;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        #d6d0c4;
+
+    border-radius:
+        999px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        #a8a29e;
+
+}
