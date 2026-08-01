@@ -7,105 +7,33 @@ import ProductModal from "../components/ProductModal.astro";
 
 import { getProducts } from "../lib/api";
 
-
-const data =
-    await getProducts();
-
-
-const products =
-    data.products ?? [];
+const data = await getProducts();
+const products = data.products ?? [];
 
 ---
 
 <html lang="zh-CN">
-
-<head>
-
-    <meta charset="UTF-8">
-
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-
-    <title>
-        香薰器皿图册
-    </title>
-
-
-</head>
-
-
-
-<body
-    class="bg-[#FAF8F5] text-stone-800 min-h-screen antialiased"
->
-
-
-
-<Header
-
-    count={products.length}
-
-    updatedAt={data.updated_at}
-
-/>
-
-
-
-
-<main
-
-    class="max-w-[1440px] mx-auto px-6 md:px-12 py-10"
-
->
-
-
-
-<section
-
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12"
-
->
-
-
-
-{
-
-    products.map(item => (
-
-        <ProductCard
-
-            item={item}
-
-        />
-
-    ))
-
-}
-
-
-
-</section>
-
-
-
-<ProductModal />
-
-
-
-</main>
-
-
-
-
-<script src="../scripts/client.ts"></script>
-
-
-
-</body>
-
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>香薰器皿图册</title>
+    </head>
+    
+    <body class="bg-[#FAF8F5] text-stone-800 min-h-screen antialiased">
+        
+        <Header count={products.length} updatedAt={data.updated_at}/>
+        
+        <main class="max-w-[1440px] mx-auto px-6 md:px-12 py-10">
+            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
+                {
+                    products.map(item => (<ProductCard item={item}/>))
+                }
+            </section>
+            
+            <ProductModal />
+        </main>
+        
+        <script src="../scripts/client.ts"></script>
+    
+    </body>
 </html>

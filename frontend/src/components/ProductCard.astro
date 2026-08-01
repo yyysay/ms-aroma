@@ -3,83 +3,58 @@ import { API_URL } from "../lib/config";
 
 const { item } = Astro.props;
 
+// 图片 URL 处理保持不变
 const imageUrl = item.image_url?.startsWith("http") ? item.image_url : `${API_URL}${item.image_url}`;
 
+// 序列化数据保持不变
 const productData = encodeURIComponent( JSON.stringify(item) );
+
+// 定义一组更严谨的等宽字体栈，优先使用 SF Mono (Mac) 或 Roboto Mono (Android/Windows)
+const monoFontClass = "font-mono text-[10px] text-stone-400 tracking-tight shrink-0";
 ---
 
-
 <article
-
-    class="product-card group cursor-pointer flex flex-col animate-fade-in-up"
-
+    class="product-card group cursor-pointer flex flex-col animate-fade-in-up p-2 -m-2 rounded-lg transition-all duration-300 hover:bg-stone-50/80"
     data-product={productData}
-
     data-search={`${item.name ?? ""} ${item.code ?? ""} ${item.capacity_ml ?? ""} ${item.capacity_oz ?? ""}`}
-
 >
 
-
+    <!-- 图片容器：动效升级，背景过渡更柔和 -->
     <div
-
-        class="aspect-square bg-[#F2EFE9] mb-4 p-6 flex items-center justify-center relative overflow-hidden transition-colors duration-300 group-hover:bg-[#ECE8DF]"
-
+        class="aspect-square bg-[#F4F1EA] mb-3.5 p-8 flex items-center justify-center relative overflow-hidden rounded-sm transition-colors duration-500 group-hover:bg-[#EAE4DC]"
     >
-
-
         <img
-
             src={imageUrl}
-
             loading="lazy"
-
             alt={item.name ?? ""}
-
-            class="max-h-full max-w-full object-contain mix-blend-multiply group-hover:scale-105 transition-all duration-700 ease-out"
-
+            class="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
         >
-
-
 
         {
             item.is_stock &&
             (
-
-                <span
-
-                    class="absolute top-4 left-4 text-[9px] uppercase tracking-widest text-stone-500 font-semibold"
-
-                >
-
+                <span class="absolute top-4 left-4 text-[9px] uppercase tracking-widest text-stone-500 font-medium bg-white/60 backdrop-blur-sm px-2 py-0.5 rounded transition-opacity duration-300 group-hover:opacity-90">
                     {item.is_stock}
-
                 </span>
-
             )
         }
-
-
     </div>
 
-
-
-    <div class="space-y-1">
-
-
-        <h3
-
-            class="text-xs uppercase tracking-wider font-semibold text-stone-900 group-hover:text-stone-600 transition-colors"
-
+    <!-- 底部信息：字体栈优化，增加原生 tooltip 提示 -->
+    <div class="flex items-baseline justify-between px-0.5 text-xs">
+        <h3 
+            class="uppercase font-medium text-stone-900 group-hover:text-stone-600 transition-colors duration-300 truncate mr-2 tracking-wide"
+            title={item.name} // <--- 关键优化：悬停显示完整名称
         >
-
             {item.name ?? "-"}
-
-
         </h3>
-
-
+        {
+            item.code && (
+                <span class={monoFontClass} style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">
+                    {item.code}
+                </span>
+            )
+        }
     </div>
-
-
 
 </article>

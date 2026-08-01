@@ -1,12 +1,8 @@
-import type {
-    ProductsResponse
-} from "./types";
+import type { ProductsResponse } from "./types";
 
 
 
-import {
-    API_URL
-} from "./config";
+import { API_URL } from "./config";
 
 
 
