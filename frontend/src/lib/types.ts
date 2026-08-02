@@ -1,3 +1,14 @@
+// 数据类型
+// 来自 excel
+
+export interface ProductsResponse {
+
+    updated_at:string;
+
+    products:Product[];
+
+}
+
 export interface Product {
 
     id:number;
@@ -35,15 +46,5 @@ export interface Product {
     mouth_spec?:string;
 
     dimensions?:string;
-
-}
-
-
-
-export interface ProductsResponse {
-
-    updated_at:string;
-
-    products:Product[];
 
 }

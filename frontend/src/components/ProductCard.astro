@@ -3,10 +3,7 @@ import { API_URL } from "../lib/config";
 
 const { item } = Astro.props;
 
-// 图片 URL 处理保持不变
 const imageUrl = item.image_url?.startsWith("http") ? item.image_url : `${API_URL}${item.image_url}`;
-
-// 序列化数据保持不变
 const productData = encodeURIComponent( JSON.stringify(item) );
 
 // 定义一组更严谨的等宽字体栈，优先使用 SF Mono (Mac) 或 Roboto Mono (Android/Windows)
@@ -19,7 +16,7 @@ const monoFontClass = "font-mono text-[10px] text-stone-400 tracking-tight shrin
     data-search={`${item.name ?? ""} ${item.code ?? ""} ${item.capacity_ml ?? ""} ${item.capacity_oz ?? ""}`}
 >
 
-    <!-- 图片容器：动效升级，背景过渡更柔和 -->
+    <!-- 图片容器 -->
     <div
         class="aspect-square bg-[#F4F1EA] mb-3.5 p-8 flex items-center justify-center relative overflow-hidden rounded-sm transition-colors duration-500 group-hover:bg-[#EAE4DC]"
     >
