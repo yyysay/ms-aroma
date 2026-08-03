@@ -1,0 +1,31 @@
+{
+  "name": "ms-aroma",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "generate:data": "node --experimental-strip-types scripts/generate-products.ts",
+    "generate:images": "node --experimental-strip-types scripts/process-images.ts",
+    "generate": "npm run generate:images && npm run generate:data",
+    "dev": "astro dev",
+    "build": "astro build",
+    "rebuild": "npm run generate && astro build",
+    "check": "astro check",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.6",
+    "exceljs": "^4.4.0",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^26.1.2",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+
+import Header from "../components/Header.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ProductModal from "../components/ProductModal.astro";
+
+import { getProducts } from "../lib/api";
+
+const data = getProducts();
+const products = data.products ?? [];
+
+---
+
+<html lang="zh-CN" class="scroll-smooth motion-reduce:scroll-auto">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="香薰器皿产品资料库" />
+        <title>香薰器皿 · Product Archive</title>
+    </head>
+    
+    <body class="min-h-screen bg-[#FAF8F5] text-stone-900 antialiased selection:bg-[#ded8cf] selection:text-stone-900">
+        
+        <Header count={products.length} updatedAt={data.updated_at}/>
+        
+        <main class="mx-auto min-h-[70vh] max-w-[1440px] px-6 py-12 md:px-12 md:py-16 lg:px-16">
+            <section id="product-grid" class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-y-16" aria-label="产品列表">
+                {
+                    products.map((item, index) => (
+                        <ProductCard item={item} productIndex={index}/>
+                    ))
+                }
+            </section>
+
+            <p id="empty-state" class="my-32 text-center text-xs tracking-wide text-stone-400" hidden>
+                没有找到相关产品
+            </p>
+            
+            <ProductModal />
+        </main>
+        
+       <script>import "../scripts/client";</script>
+    
+    </body>
+</html>

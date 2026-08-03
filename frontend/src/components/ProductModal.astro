@@ -1,0 +1,78 @@
+<div
+    id="product-modal"
+    class="invisible fixed inset-0 z-50 flex items-center justify-center bg-stone-900/25 p-3 opacity-0 backdrop-blur-sm transition-opacity duration-200 motion-reduce:transition-none md:p-8"
+    aria-hidden="true"
+>
+    <button id="modal-backdrop" type="button" class="absolute inset-0 h-full w-full cursor-default border-0 bg-transparent p-0" aria-label="关闭产品详情" tabindex="-1"></button>
+
+    <article
+        class="relative z-10 grid h-[calc(100dvh-1.5rem)] max-h-[820px] w-full max-w-[1180px] grid-cols-1 grid-rows-[minmax(0,42%)_minmax(0,58%)] overflow-hidden rounded-[28px] border border-white/80 bg-[#FAF8F5] p-3 shadow-[0_30px_100px_rgba(28,25,23,0.18),inset_0_1px_0_rgba(255,255,255,0.9)] md:h-[calc(100dvh-4rem)] md:grid-cols-[minmax(0,1.08fr)_minmax(440px,0.92fr)] md:grid-rows-1 md:p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-name"
+    >
+        <figure class="grid h-full min-h-0 place-items-center overflow-hidden rounded-[20px] bg-[#F4F1EA] p-9 md:p-14 lg:p-20">
+            <img id="modal-image" src="" alt="" class="h-full min-h-0 w-full select-none object-contain mix-blend-multiply" />
+        </figure>
+
+        <section class="relative h-full min-h-0 overflow-y-auto px-5 pb-8 pt-6 md:px-9 md:pb-10 md:pt-8 lg:px-12 lg:pb-12 lg:pt-10">
+            <button
+                id="modal-close"
+                type="button"
+                class="sticky top-0 z-20 ml-auto grid size-9 place-items-center rounded-full border border-stone-200/80 bg-[#FAF8F5]/90 text-lg font-light leading-none text-stone-400 shadow-sm backdrop-blur-md transition-[color,background-color] hover:bg-white hover:text-stone-900 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-stone-500"
+                aria-label="关闭产品详情"
+            >×</button>
+
+            <header class="-mt-4 mb-10 pr-12">
+                <h2 id="modal-name" class="text-3xl font-normal leading-[1.18] tracking-[-0.04em] text-stone-900 md:text-4xl"></h2>
+                <button
+                    id="modal-code"
+                    type="button"
+                    data-copy
+                    class="mt-4 inline-flex cursor-copy items-center rounded-full px-3 py-1.5 font-mono text-xs font-medium tracking-wide ring-1 ring-inset transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-stone-500"
+                    title="点击复制编码"
+                ></button>
+            </header>
+
+            <dl class="space-y-10 text-sm [&_button]:cursor-copy [&_button]:rounded-lg [&_button]:px-2 [&_button]:py-1.5 [&_button]:text-left [&_button]:transition-colors [&_button]:hover:bg-white/80 [&_button]:focus-visible:outline [&_button]:focus-visible:outline-1 [&_button]:focus-visible:outline-offset-2 [&_button]:focus-visible:outline-stone-400">
+                <div>
+                    <p class="mb-5 text-[9px] font-medium uppercase tracking-[0.16em] text-stone-400">基础信息</p>
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-6">
+                        <div><dt class="text-[10px] text-stone-400">供应商</dt><dd class="mt-1"><button id="modal-supplier" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">公司料号</dt><dd class="mt-1"><button id="modal-material-no" type="button" data-copy class="font-mono"></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">罐装容量</dt><dd class="mt-1"><button id="modal-capacity" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">盎司 / 英制</dt><dd class="mt-1"><button id="modal-capacity-oz" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">器皿规格</dt><dd class="mt-1"><button id="modal-size" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">克重</dt><dd class="mt-1"><button id="modal-weight" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">牙口</dt><dd class="mt-1"><button id="modal-mouth" type="button" data-copy></button></dd></div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="mb-5 text-[9px] font-medium uppercase tracking-[0.16em] text-stone-400">扩香配置</p>
+                    <div class="grid grid-cols-3 gap-5">
+                        <div><dt class="text-[10px] text-stone-400">纤维棒规格</dt><dd class="mt-1"><button id="modal-fiber-spec" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">纤维棒根数</dt><dd class="mt-1"><button id="modal-fiber-count" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">挥发周期</dt><dd class="mt-1"><button id="modal-evaporation" type="button" data-copy></button></dd></div>
+                    </div>
+                </div>
+            </dl>
+
+            <div class="mt-8 flex flex-wrap gap-2">
+                <button id="modal-canton-box" type="button" data-copy class="cursor-copy rounded-full bg-amber-100/75 px-3 py-2 text-xs text-amber-800 ring-1 ring-inset ring-amber-200/70 transition-transform hover:-translate-y-0.5" hidden>
+                    <span class="mr-1 text-[9px] uppercase tracking-wide text-amber-600">广交会</span>
+                    <span id="modal-canton"></span>
+                </button>
+
+                <button id="modal-history-box" type="button" data-copy class="cursor-copy rounded-full bg-sky-100/75 px-3 py-2 text-xs text-sky-800 ring-1 ring-inset ring-sky-200/70 transition-transform hover:-translate-y-0.5" hidden>
+                    <span class="mr-1 text-[9px] uppercase tracking-wide text-sky-600">历史订单</span>
+                    <span id="modal-history"></span>
+                </button>
+            </div>
+        </section>
+    </article>
+
+    <div id="copy-toast" class="pointer-events-none absolute bottom-6 left-1/2 z-30 -translate-x-1/2 translate-y-2 rounded-full bg-stone-900/85 px-4 py-2 text-xs text-white opacity-0 shadow-lg backdrop-blur-md transition-[opacity,transform] duration-200">
+        已复制
+    </div>
+</div>

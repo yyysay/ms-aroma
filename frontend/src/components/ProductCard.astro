@@ -1,0 +1,29 @@
+---
+const { item, productIndex } = Astro.props;
+---
+
+<button
+    type="button"
+    class="product-card group block min-w-0 cursor-pointer border-0 bg-transparent p-0 text-left focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-stone-500 disabled:hidden"
+    data-product-index={productIndex}
+    data-search={`${item.name ?? ""} ${item.code ?? ""}`}
+    aria-label={`查看 ${item.name ?? "产品"} 的详细资料`}
+>
+    <span class="product-image relative grid aspect-square place-items-center overflow-hidden bg-[#F4F1EA] p-7 transition-colors duration-300 group-hover:bg-[#EAE4DC] motion-reduce:transition-none md:p-9">
+        <img
+            src={item.image_url}
+            loading="lazy"
+            alt={item.name ?? ""}
+            class="h-full w-full select-none object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-[1.025] motion-reduce:transition-none"
+        />
+    </span>
+
+    <span class="block pt-3.5">
+        <span class="block truncate text-[13px] font-medium leading-5 tracking-[-0.01em] text-stone-900" title={item.name}>
+            {item.name ?? "未命名产品"}
+        </span>
+        <span class="mt-0.5 block truncate font-mono text-[10px] leading-5 tracking-tight text-stone-400">
+            {item.code ?? "—"}
+        </span>
+    </span>
+</button>

@@ -1,0 +1,27 @@
+# Go
+*.exe
+*.out
+*.test
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Runtime files
+*.log
+
+# Local source data
+/data/products.xlsx
+/data/images/
+
+# Legacy generated images
+/images_processed/
+
+# Temporary
+tmp/
+
+# private
+~$*.xlsx
