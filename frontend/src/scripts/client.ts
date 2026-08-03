@@ -7,8 +7,6 @@ import {
     initModal
 } from "./modal";
 
-
-
 document.addEventListener(
     "DOMContentLoaded",
     () => {

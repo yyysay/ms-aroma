@@ -1,114 +1,78 @@
 <div
     id="product-modal"
-    class="hidden fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 md:p-8"
+    class="invisible fixed inset-0 z-50 flex items-center justify-center bg-stone-900/25 p-3 opacity-0 backdrop-blur-sm transition-opacity duration-200 motion-reduce:transition-none md:p-8"
+    aria-hidden="true"
 >
+    <button id="modal-backdrop" type="button" class="absolute inset-0 h-full w-full cursor-default border-0 bg-transparent p-0" aria-label="关闭产品详情" tabindex="-1"></button>
 
-    <section
-        class="bg-[#FAF8F5] max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl rounded-xl p-6 md:p-12 relative flex flex-col md:flex-row gap-8 md:gap-12"
+    <article
+        class="relative z-10 grid h-[calc(100dvh-1.5rem)] max-h-[820px] w-full max-w-[1180px] grid-cols-1 grid-rows-[minmax(0,42%)_minmax(0,58%)] overflow-hidden rounded-[28px] border border-white/80 bg-[#FAF8F5] p-3 shadow-[0_30px_100px_rgba(28,25,23,0.18),inset_0_1px_0_rgba(255,255,255,0.9)] md:h-[calc(100dvh-4rem)] md:grid-cols-[minmax(0,1.08fr)_minmax(440px,0.92fr)] md:grid-rows-1 md:p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-name"
     >
+        <figure class="grid h-full min-h-0 place-items-center overflow-hidden rounded-[20px] bg-[#F4F1EA] p-9 md:p-14 lg:p-20">
+            <img id="modal-image" src="" alt="" class="h-full min-h-0 w-full select-none object-contain mix-blend-multiply" />
+        </figure>
 
-        <button
-            id="modal-close"
-            type="button"
-            class="absolute top-6 right-6 text-stone-400 hover:text-stone-900 text-sm tracking-widest uppercase transition-colors"
-        >
-            CLOSE ✕
-        </button>
+        <section class="relative h-full min-h-0 overflow-y-auto px-5 pb-8 pt-6 md:px-9 md:pb-10 md:pt-8 lg:px-12 lg:pb-12 lg:pt-10">
+            <button
+                id="modal-close"
+                type="button"
+                class="sticky top-0 z-20 ml-auto grid size-9 place-items-center rounded-full border border-stone-200/80 bg-[#FAF8F5]/90 text-lg font-light leading-none text-stone-400 shadow-sm backdrop-blur-md transition-[color,background-color] hover:bg-white hover:text-stone-900 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-stone-500"
+                aria-label="关闭产品详情"
+            >×</button>
 
-        <!-- 左侧图片区 (固定正方形比例，空间变大) -->
-        <div class="md:w-1/2 aspect-square bg-[#F2EFE9] rounded p-8 flex items-center justify-center shrink-0">
-            <img
-                id="modal-image"
-                src=""
-                alt=""
-                class="max-h-full max-w-full object-contain mix-blend-multiply"
-            >
-        </div>
+            <header class="-mt-4 mb-10 pr-12">
+                <h2 id="modal-name" class="text-3xl font-normal leading-[1.18] tracking-[-0.04em] text-stone-900 md:text-4xl"></h2>
+                <button
+                    id="modal-code"
+                    type="button"
+                    data-copy
+                    class="mt-4 inline-flex cursor-copy items-center rounded-full px-3 py-1.5 font-mono text-xs font-medium tracking-wide ring-1 ring-inset transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-stone-500"
+                    title="点击复制编码"
+                ></button>
+            </header>
 
-        <!-- 右侧数据区 (保持弹性填充) -->
-        <div class="md:w-1/2 flex flex-col">
+            <dl class="space-y-10 text-sm [&_button]:cursor-copy [&_button]:rounded-lg [&_button]:px-2 [&_button]:py-1.5 [&_button]:text-left [&_button]:transition-colors [&_button]:hover:bg-white/80 [&_button]:focus-visible:outline [&_button]:focus-visible:outline-1 [&_button]:focus-visible:outline-offset-2 [&_button]:focus-visible:outline-stone-400">
+                <div>
+                    <p class="mb-5 text-[9px] font-medium uppercase tracking-[0.16em] text-stone-400">基础信息</p>
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-6">
+                        <div><dt class="text-[10px] text-stone-400">供应商</dt><dd class="mt-1"><button id="modal-supplier" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">公司料号</dt><dd class="mt-1"><button id="modal-material-no" type="button" data-copy class="font-mono"></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">罐装容量</dt><dd class="mt-1"><button id="modal-capacity" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">盎司 / 英制</dt><dd class="mt-1"><button id="modal-capacity-oz" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">器皿规格</dt><dd class="mt-1"><button id="modal-size" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">克重</dt><dd class="mt-1"><button id="modal-weight" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">牙口</dt><dd class="mt-1"><button id="modal-mouth" type="button" data-copy></button></dd></div>
+                    </div>
+                </div>
 
-            <!-- 标题与编号：字号同步放大撑起气场 -->
-            <div class="flex items-end justify-between gap-4 mb-5 shrink-0">
-                <h2 id="modal-name"
-                    class="text-2xl text-stone-900 font-medium leading-snug"
-                >
-                </h2>
-                <span id="modal-code"
-                    class="inline-flex items-center bg-stone-100 text-stone-900 border border-stone-200 text-xs uppercase tracking-widest font-mono font-bold px-2 py-0.5 rounded whitespace-nowrap shrink-0"
-                >
-                </span>
+                <div>
+                    <p class="mb-5 text-[9px] font-medium uppercase tracking-[0.16em] text-stone-400">扩香配置</p>
+                    <div class="grid grid-cols-3 gap-5">
+                        <div><dt class="text-[10px] text-stone-400">纤维棒规格</dt><dd class="mt-1"><button id="modal-fiber-spec" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">纤维棒根数</dt><dd class="mt-1"><button id="modal-fiber-count" type="button" data-copy></button></dd></div>
+                        <div><dt class="text-[10px] text-stone-400">挥发周期</dt><dd class="mt-1"><button id="modal-evaporation" type="button" data-copy></button></dd></div>
+                    </div>
+                </div>
+            </dl>
+
+            <div class="mt-8 flex flex-wrap gap-2">
+                <button id="modal-canton-box" type="button" data-copy class="cursor-copy rounded-full bg-amber-100/75 px-3 py-2 text-xs text-amber-800 ring-1 ring-inset ring-amber-200/70 transition-transform hover:-translate-y-0.5" hidden>
+                    <span class="mr-1 text-[9px] uppercase tracking-wide text-amber-600">广交会</span>
+                    <span id="modal-canton"></span>
+                </button>
+
+                <button id="modal-history-box" type="button" data-copy class="cursor-copy rounded-full bg-sky-100/75 px-3 py-2 text-xs text-sky-800 ring-1 ring-inset ring-sky-200/70 transition-transform hover:-translate-y-0.5" hidden>
+                    <span class="mr-1 text-[9px] uppercase tracking-wide text-sky-600">历史订单</span>
+                    <span id="modal-history"></span>
+                </button>
             </div>
+        </section>
+    </article>
 
-            <!-- 属性列表：基础字号从 text-xs 升级到 text-sm，阅读更舒服 -->
-            <div class="border-t border-stone-200 text-sm flex-1 flex flex-col">
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">供应商</span>
-                    <span id="modal-supplier" class="text-stone-900 font-medium"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">公司料号</span>
-                    <span id="modal-material-no" class="text-stone-900 font-mono"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">罐装容量</span>
-                    <span id="modal-capacity" class="text-stone-900"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">盎司 / 英制</span>
-                    <span id="modal-capacity-oz" class="text-stone-900"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">纤维棒规格</span>
-                    <span id="modal-fiber-spec" class="text-stone-900"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">纤维棒根数</span>
-                    <span id="modal-fiber-count" class="text-stone-900"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">克重</span>
-                    <span id="modal-weight" class="text-stone-900"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">挥发周期</span>
-                    <span id="modal-evaporation" class="text-stone-900"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between border-b border-stone-100 py-1.5">
-                    <span class="text-stone-500">牙口规格</span>
-                    <span id="modal-mouth" class="text-stone-900"></span>
-                </div>
-
-                <div class="flex-1 flex items-center justify-between py-1.5">
-                    <span class="text-stone-500">器皿规格</span>
-                    <span id="modal-size" class="text-stone-900"></span>
-                </div>
-
-            </div>
-
-            <!-- 广交会规格 -->
-            <div id="modal-canton-box" class="hidden shrink-0 text-sm bg-[#F2EFE9] p-4 rounded text-stone-800 mt-5">
-                <span class="text-stone-500 block text-xs uppercase mb-1">广交会规格</span>
-                <span id="modal-canton"></span>
-            </div>
-
-            <!-- 历史订单 -->
-            <div id="modal-history-box" class="hidden shrink-0 text-sm bg-blue-50 border border-blue-200 rounded p-2 text-blue-900 mt-4">
-                <span class="text-blue-500 block text-xs uppercase mb-1">历史订单规格</span>
-                <span id="modal-history"></span>
-            </div>
-
-        </div>
-
-    </section>
-
+    <div id="copy-toast" class="pointer-events-none absolute bottom-6 left-1/2 z-30 -translate-x-1/2 translate-y-2 rounded-full bg-stone-900/85 px-4 py-2 text-xs text-white opacity-0 shadow-lg backdrop-blur-md transition-[opacity,transform] duration-200">
+        已复制
+    </div>
 </div>
