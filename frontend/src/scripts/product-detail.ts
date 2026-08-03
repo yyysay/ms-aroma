@@ -1,5 +1,3 @@
-import { API_URL } from "../lib/config";
-
 function getImageUrl(
     imageUrl:string
 ){
@@ -8,9 +6,7 @@ function getImageUrl(
         return "";
     }
 
-    return imageUrl.startsWith("http")
-        ? imageUrl
-        : `${API_URL}${imageUrl}`;
+    return imageUrl;
 
 }
 

@@ -7,7 +7,7 @@ import ProductModal from "../components/ProductModal.astro";
 
 import { getProducts } from "../lib/api";
 
-const data = await getProducts();
+const data = getProducts();
 const products = data.products ?? [];
 
 ---

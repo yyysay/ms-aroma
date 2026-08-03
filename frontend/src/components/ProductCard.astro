@@ -1,9 +1,8 @@
 ---
-import { API_URL } from "../lib/config";
 
 const { item } = Astro.props;
 
-const imageUrl = item.image_url?.startsWith("http") ? item.image_url : `${API_URL}${item.image_url}`;
+const imageUrl = item.image_url;
 const productData = encodeURIComponent( JSON.stringify(item) );
 
 // 定义一组更严谨的等宽字体栈，优先使用 SF Mono (Mac) 或 Roboto Mono (Android/Windows)

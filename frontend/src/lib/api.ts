@@ -1,30 +1,6 @@
 import type { ProductsResponse } from "./types";
+import productsData from "../../public/data/products.json";
 
-
-
-import { API_URL } from "./config";
-
-
-
-export async function getProducts()
-:Promise<ProductsResponse>{
-
-
-    const response =
-        await fetch(
-            `${API_URL}/api/products`
-        );
-
-
-    if(!response.ok){
-
-        throw new Error(
-            `API request failed:${response.status}`
-        );
-
-    }
-
-
-    return await response.json();
-
+export function getProducts(): ProductsResponse {
+  return productsData satisfies ProductsResponse;
 }

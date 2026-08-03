@@ -13,16 +13,15 @@
 # Runtime files
 *.log
 
-# Local data
-products.xlsx
+# Local source data
+/data/products.xlsx
+/data/images/
 
-# Generated images
-images_processed/
-images/
+# Legacy generated images
+/images_processed/
 
 # Temporary
 tmp/
 
 # private
-/products.xlsx
-~$products.xlsx
+~$*.xlsx
