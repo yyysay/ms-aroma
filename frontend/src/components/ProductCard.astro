@@ -1,9 +1,8 @@
 ---
 
-const { item } = Astro.props;
+const { item, productIndex } = Astro.props;
 
 const imageUrl = item.image_url;
-const productData = encodeURIComponent( JSON.stringify(item) );
 
 // 定义一组更严谨的等宽字体栈，优先使用 SF Mono (Mac) 或 Roboto Mono (Android/Windows)
 const monoFontClass = "font-mono text-[10px] text-stone-400 tracking-tight shrink-0";
@@ -11,7 +10,7 @@ const monoFontClass = "font-mono text-[10px] text-stone-400 tracking-tight shrin
 
 <article
     class="product-card group cursor-pointer flex flex-col animate-fade-in-up p-2 -m-2 rounded-lg transition-all duration-300 hover:bg-stone-50/80"
-    data-product={productData}
+    data-product-index={productIndex}
     data-search={`${item.name ?? ""} ${item.code ?? ""} ${item.capacity_ml ?? ""} ${item.capacity_oz ?? ""}`}
 >
 
