@@ -9,6 +9,7 @@
 
 # OS
 .DS_Store
+**/.DS_Store
 
 # Runtime files
 *.log
